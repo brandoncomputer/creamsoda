@@ -6,14 +6,14 @@ using Microsoft.Win32;
 using System.IO;
 using System.Drawing;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
     class Settings
     {
 
         public static bool SetupNeeded {
             get {
-                return GamePath == "" || !File.Exists(Path.Combine(GamePath, "CreamSoda.exe"));
+                return GamePath == "" || !File.Exists(Path.Combine(GamePath, "CoHLauncher.exe"));
             }
         }
 
@@ -22,11 +22,11 @@ namespace CreamSoda
             get
             {
                 FixRegistryPolution();
-                return CreamSodaRegistry.GetValue("CoHPath", "").ToString();
+                return CoHLauncherRegistry.GetValue("CoHPath", "").ToString();
             }
             set
             {
-                CreamSodaRegistry.SetValue("CoHPath", value);
+                CoHLauncherRegistry.SetValue("CoHPath", value);
             }
         }
 
@@ -35,14 +35,14 @@ namespace CreamSoda
             get
             {
 
-                return CreamSodaRegistry.GetValue("QuitOnLaunch", "FALSE").ToString().ToUpper() == "TRUE";
+                return CoHLauncherRegistry.GetValue("QuitOnLaunch", "FALSE").ToString().ToUpper() == "TRUE";
             }
             set
             {
                 if(value) 
-                    CreamSodaRegistry.SetValue("QuitOnLaunch", "TRUE");
+                    CoHLauncherRegistry.SetValue("QuitOnLaunch", "TRUE");
                 else
-                    CreamSodaRegistry.SetValue("QuitOnLaunch", "FALSE");
+                    CoHLauncherRegistry.SetValue("QuitOnLaunch", "FALSE");
             }
         }
 
@@ -50,11 +50,11 @@ namespace CreamSoda
         {
             get
             {
-                return CreamSodaRegistry.GetValue("Parameters", "").ToString();
+                return CoHLauncherRegistry.GetValue("Parameters", "").ToString();
             }
             set
             {
-                CreamSodaRegistry.SetValue("Parameters", value);
+                CoHLauncherRegistry.SetValue("Parameters", value);
             }
         }
 
@@ -62,13 +62,13 @@ namespace CreamSoda
         {
             get
             {
-                bool success = int.TryParse(CreamSodaRegistry.GetValue("BGColor", SystemColors.Control.ToArgb()).ToString(), out int color);
+                bool success = int.TryParse(CoHLauncherRegistry.GetValue("BGColor", SystemColors.Control.ToArgb()).ToString(), out int color);
                 if (success) return Color.FromArgb(color);
                 else return Color.Black;
             }
             set
             {
-                CreamSodaRegistry.SetValue("BGColor", value.ToArgb());
+                CoHLauncherRegistry.SetValue("BGColor", value.ToArgb());
             }
         }
 
@@ -76,13 +76,13 @@ namespace CreamSoda
         {
             get
             {
-                bool success = int.TryParse(CreamSodaRegistry.GetValue("TextColor", SystemColors.ControlText.ToArgb()).ToString(), out int color);
+                bool success = int.TryParse(CoHLauncherRegistry.GetValue("TextColor", SystemColors.ControlText.ToArgb()).ToString(), out int color);
                 if (success) return Color.FromArgb(color);
                 else return Color.Black;
             }
             set
             {
-                CreamSodaRegistry.SetValue("TextColor", value.ToArgb());
+                CoHLauncherRegistry.SetValue("TextColor", value.ToArgb());
             }
         }
 
@@ -90,13 +90,13 @@ namespace CreamSoda
         {
             get
             {
-                bool success = int.TryParse(CreamSodaRegistry.GetValue("ListColor", SystemColors.Window.ToArgb()).ToString(), out int color);
+                bool success = int.TryParse(CoHLauncherRegistry.GetValue("ListColor", SystemColors.Window.ToArgb()).ToString(), out int color);
                 if (success) return Color.FromArgb(color);
                 else return Color.Black;
             }
             set
             {
-                CreamSodaRegistry.SetValue("TextColor", value.ToArgb());
+                CoHLauncherRegistry.SetValue("TextColor", value.ToArgb());
             }
         }
 
@@ -104,13 +104,13 @@ namespace CreamSoda
         {
             get
             {
-                bool success = int.TryParse(CreamSodaRegistry.GetValue("ListTextColor", SystemColors.WindowText.ToArgb()).ToString(), out int color);
+                bool success = int.TryParse(CoHLauncherRegistry.GetValue("ListTextColor", SystemColors.WindowText.ToArgb()).ToString(), out int color);
                 if (success) return Color.FromArgb(color);
                 else return Color.Black;
             }
             set
             {
-                CreamSodaRegistry.SetValue("ListTextColor", value.ToArgb());
+                CoHLauncherRegistry.SetValue("ListTextColor", value.ToArgb());
             }
         }
 
@@ -119,7 +119,7 @@ namespace CreamSoda
             get
             {
                 char[] splitChars = {'\n'};
-                return CreamSodaRegistry.GetValue("Manifests", "").ToString().Split(splitChars, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+                return CoHLauncherRegistry.GetValue("Manifests", "").ToString().Split(splitChars, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
             }
             set
             {
@@ -130,7 +130,7 @@ namespace CreamSoda
                 }
 
                 if (strManifests.EndsWith("\n")) strManifests = strManifests.Substring(0, strManifests.Length - 1);
-                CreamSodaRegistry.SetValue("Manifests", strManifests);
+                CoHLauncherRegistry.SetValue("Manifests", strManifests);
             }
         }
 
@@ -138,26 +138,26 @@ namespace CreamSoda
         {
             get
             {
-                return CreamSodaRegistry.GetValue("LastManifest", "").ToString();
+                return CoHLauncherRegistry.GetValue("LastManifest", "").ToString();
             }
             set
             {
-                CreamSodaRegistry.SetValue("LastManifest", value);
+                CoHLauncherRegistry.SetValue("LastManifest", value);
             }
         }
 
         public static void Reset() {
-            CreamSodaRegistry.DeleteValue("CoHPath");
+            CoHLauncherRegistry.DeleteValue("CoHPath");
         }
 
-        private static RegistryKey CreamSodaRegistry {
+        private static RegistryKey CoHLauncherRegistry {
             get
             {
-                RegistryKey r = Registry.CurrentUser.OpenSubKey(@"Software\CreamSoda\Settings", true);
+                RegistryKey r = Registry.CurrentUser.OpenSubKey(@"Software\CoHLauncher\Settings", true);
 
                 if (r == null)
                 {
-                    r = Registry.CurrentUser.CreateSubKey(@"Software\CreamSoda\Settings");
+                    r = Registry.CurrentUser.CreateSubKey(@"Software\CoHLauncher\Settings");
                 }
 
                 return r;

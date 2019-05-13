@@ -48,10 +48,10 @@ class MyToolkit
     /// <returns>False if we cant write to the path.</returns>
     public static bool InstallDirSafe(string path) {
         try {
-            File.Move(Path.Combine(path, "CreamSoda.exe"), Path.Combine(path, "CreamSoda_rename.exe"));
-            if (File.Exists(Path.Combine(path, "CreamSoda_rename.exe")))
+            File.Move(Path.Combine(path, "CoHLauncher.exe"), Path.Combine(path, "CoHLauncher_rename.exe"));
+            if (File.Exists(Path.Combine(path, "CoHLauncher_rename.exe")))
             {
-                File.Move(Path.Combine(path, "CreamSoda_rename.exe"), Path.Combine(path, "CreamSoda.exe"));
+                File.Move(Path.Combine(path, "CoHLauncher_rename.exe"), Path.Combine(path, "CoHLauncher.exe"));
                 return true;
             } else {
                 return false;
@@ -75,7 +75,7 @@ class MyToolkit
     public static void ActivityLog(string Line) {
         try
         {
-            using (StreamWriter writer = new StreamWriter(Path.Combine(CreamSoda.Settings.GamePath, "CreamSodaActivityLog.txt"), true))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(CoHLauncher.Settings.GamePath, "CoHLauncherActivityLog.txt"), true))
             {
                 writer.WriteLine("[" + DateTime.Now.ToString() + "]\t" + Line);
             }

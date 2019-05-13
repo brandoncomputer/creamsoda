@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
     class HTTP
     {

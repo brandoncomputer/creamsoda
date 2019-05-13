@@ -1,4 +1,4 @@
-namespace CreamSoda
+namespace CoHLauncher
 {
     partial class Preferences
     {
@@ -114,9 +114,9 @@ namespace CreamSoda
             this.ckbQuitOnLaunch.AutoSize = true;
             this.ckbQuitOnLaunch.Location = new System.Drawing.Point(113, 41);
             this.ckbQuitOnLaunch.Name = "ckbQuitOnLaunch";
-            this.ckbQuitOnLaunch.Size = new System.Drawing.Size(218, 17);
+            this.ckbQuitOnLaunch.Size = new System.Drawing.Size(229, 17);
             this.ckbQuitOnLaunch.TabIndex = 3;
-            this.ckbQuitOnLaunch.Text = "Close CreamSoda after starting the game";
+            this.ckbQuitOnLaunch.Text = "Close CoHLauncher after starting the game";
             this.ckbQuitOnLaunch.UseVisualStyleBackColor = true;
             this.ckbQuitOnLaunch.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 

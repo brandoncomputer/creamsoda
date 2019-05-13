@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
     public partial class Preferences : Form
     {
@@ -183,9 +183,9 @@ namespace CreamSoda
                 if (!File.Exists(Application.ExecutablePath)) return;
 
                 string ShortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                string ShortcutTarget = Path.Combine(Settings.GamePath, "CreamSoda.exe");
+                string ShortcutTarget = Path.Combine(Settings.GamePath, "CoHLauncher.exe");
 
-                MyToolkit.ActivityLog("Self Relocating CreamSoda to \"" + ShortcutTarget + "\"");
+                MyToolkit.ActivityLog("Self Relocating CoHLauncher to \"" + ShortcutTarget + "\"");
 
                 if (!Directory.Exists(Settings.GamePath))
                     Directory.CreateDirectory(Settings.GamePath);
@@ -199,7 +199,7 @@ namespace CreamSoda
                     try { File.Move(Application.ExecutablePath, Path.Combine(Application.StartupPath, "deleteme.txt")); }
                     catch (Exception)
                     {
-                        MyToolkit.ActivityLog("Failed to relocate CreamSoda to \"" + ShortcutTarget + "\"");  
+                        MyToolkit.ActivityLog("Failed to relocate CoHLauncher to \"" + ShortcutTarget + "\"");  
                     }
                 }
 
@@ -209,7 +209,7 @@ namespace CreamSoda
                         //shortcut.WorkingDirectory = Path.GetDirectoryName(ShortcutTarget);
                         shortcut.Description = "Drink up!";
                         shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-                        shortcut.Save(Path.Combine(ShortcutPath, "CreamSoda.lnk"));
+                        shortcut.Save(Path.Combine(ShortcutPath, "CoHLauncher.lnk"));
                     }
                 } catch (Exception ex) {
                     MyToolkit.ActivityLog("Failed to create desktop shortcut \"" + ShortcutTarget + "\"");  

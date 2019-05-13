@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
-    partial class CreamSoda
+    partial class CoHLauncher
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace CreamSoda
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreamSoda));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoHLauncher));
             this.lblStatus = new System.Windows.Forms.Label();
             this.Progress = new System.Windows.Forms.ProgressBar();
             this.txtErrors = new System.Windows.Forms.TextBox();
@@ -190,7 +190,7 @@ namespace CreamSoda
             this.webBrowser1.TabIndex = 8;
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
             // 
-            // CreamSoda
+            // CoHLauncher
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -208,9 +208,9 @@ namespace CreamSoda
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 560);
-            this.Name = "CreamSoda";
+            this.Name = "CoHLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreamSoda";
+            this.Text = "Launcher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.pnlErrors.ResumeLayout(false);

@@ -14,9 +14,9 @@ using System.Collections;
 using System.Diagnostics;
 using System.Threading;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
-    public partial class CreamSoda : Form
+    public partial class CoHLauncher : Form
     {
         WorkThread myWorker;
 
@@ -25,7 +25,7 @@ namespace CreamSoda
         
         string ManifestURL = "";
 
-        public CreamSoda()
+        public CoHLauncher()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace CreamSoda
             try {
                 if (Settings.SetupNeeded)
                 {
-                    MyToolkit.ActivityLog("Setting up CreamSoda");
+                    MyToolkit.ActivityLog("Setting up CoHLauncher");
                     string myPath = "";
                     bool PathValid = false;
                     FolderBrowserDialog FileBox;
@@ -42,12 +42,12 @@ namespace CreamSoda
                     do {
                         FileBox = new FolderBrowserDialog
                         {
-                            Description = "Select a location where you would like to install CreamSoda; preferably under My Documents or Application Data. Do not use a folder under Program Files.",
+                            Description = "Select a location where you would like to install CoHLauncher; preferably under My Documents or Application Data. Do not use a folder under Program Files.",
                             SelectedPath = Application.StartupPath
                         };
 
                         if (FileBox.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel) {
-                            MessageBox.Show("You must select a valid install directory to continue.\nCreamSoda will now quit. Restart CreamSoda once you have a valid installation path.");
+                            MessageBox.Show("You must select a valid install directory to continue.\nCoHLauncher will now quit. Restart CoHLauncher once you have a valid installation path.");
                             Application.Exit();
                             return false;
                         }
@@ -59,7 +59,7 @@ namespace CreamSoda
 
                     Settings.GamePath = myPath;
 
-                    MyToolkit.ActivityLog("CreamSoda installed at \"" + myPath + "\"");
+                    MyToolkit.ActivityLog("CoHLauncher installed at \"" + myPath + "\"");
                 }
 
                 SelfRelocate();
@@ -172,7 +172,7 @@ namespace CreamSoda
             try
             {
 
-                Process[] prs = Process.GetProcessesByName("CreamSoda");
+                Process[] prs = Process.GetProcessesByName("CoHLauncher");
                 Process me = Process.GetCurrentProcess();
                 int killcount = 0;
                 int killfailcount = 0;
@@ -193,7 +193,7 @@ namespace CreamSoda
                 }
 
                 if (killcount > 0) Thread.Sleep(2000);
-                if (killfailcount > 0) MessageBox.Show(null, "Found a running instance of CreamSoda but was not able to terminate it.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (killfailcount > 0) MessageBox.Show(null, "Found a running instance of CoHLauncher but was not able to terminate it.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             } catch (Exception) { }
         }
@@ -236,7 +236,7 @@ namespace CreamSoda
             List<string> Manifests = Settings.Manifests;
 
             if (Manifests.Count == 0) {
-                Manifests.Add("http://thunderspy.com/manifest.xml");
+                Manifests.Add("https://raw.githubusercontent.com/brandoncomputer/accountcreator/master/CoHLauncher.xml");
                 Settings.Manifests = Manifests;
             }
         
@@ -261,7 +261,7 @@ namespace CreamSoda
             {
                 MyToolkit.ActivityLog("Started patching");
                 string PathRoot = Settings.GamePath;
-                string LocalManifest = PathRoot + @"CreamSoda.xml";
+                string LocalManifest = PathRoot + @"CoHLauncher.xml";
 
                 btnPlay.Text = "Please wait...";
                 btnPlay.Enabled = false;
@@ -425,7 +425,7 @@ namespace CreamSoda
 
                 MyToolkit.ActivityLog("Revalidation process started");
                 ListBox1.DataSource = null;
-                File.Delete(Path.Combine(Settings.GamePath, "CreamSodalog.xml"));
+                File.Delete(Path.Combine(Settings.GamePath, "CoHLauncherlog.xml"));
                 timer1.Enabled = Setup();
                 StartUp();
             } catch (Exception ex) {

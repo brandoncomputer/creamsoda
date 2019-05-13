@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace CreamSoda
             MyToolkit.args = args;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreamSoda());
+            Application.Run(new CoHLauncher());
         }
     }
 

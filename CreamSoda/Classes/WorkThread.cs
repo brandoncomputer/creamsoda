@@ -12,7 +12,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace CreamSoda
+namespace CoHLauncher
 {
     class WorkThread
     {
@@ -99,7 +99,7 @@ namespace CreamSoda
 
         public string LogPath {
             get {
-                return Path.Combine(Settings.GamePath, "CreamSodalog.xml");
+                return Path.Combine(Settings.GamePath, "CoHLauncherlog.xml");
             }
         }
 
@@ -378,7 +378,7 @@ namespace CreamSoda
 
             MyToolkit.ActivityLog("Attempting to download Manifest file \"" + ManifestURL + "\"");
             m_Status = "Fetching manifest";
-            LocalManifest = MyToolkit.ValidPath(Path.Combine(PathRoot, "CreamSoda.xml"));
+            LocalManifest = MyToolkit.ValidPath(Path.Combine(PathRoot, "CoHLauncher.xml"));
             client.StartDownload(new AsyncCompletedEventHandler(ManifestDownloadComplete),
                                 new DownloadProgressChangedEventHandler(dlProgress),
                                 ManifestURL,
@@ -438,7 +438,7 @@ namespace CreamSoda
                 }
 
 
-                SelfPatch();
+            //    SelfPatch();
                 
                 m_Status = "Reading manifest";
                 IEnumerable<XElement> files = m_manifest.Descendants("file");
@@ -497,9 +497,12 @@ namespace CreamSoda
         }
 
         void SelfPatch() {
+            return; }
+
+        void OldSelfPatch() { 
             try
             {
-                Fingerprint myFingerprint = new Fingerprint(Settings.GamePath, "CreamSoda.exe");
+                Fingerprint myFingerprint = new Fingerprint(Settings.GamePath, "CoHLauncher.exe");
 
                 if (DontSelfUpdate) return;
                 MyToolkit.ActivityLog("Starting self-patch process.");
@@ -517,13 +520,13 @@ namespace CreamSoda
                 m_Status = "Self patching";
                 foreach (XElement launcher in launchers)
                 {
-                    if (launcher.Attribute("id").Value == "CreamSoda")
+                    if (launcher.Attribute("id").Value == "CoHLauncher")
                     {
 
                         long.TryParse(launcher.Attribute("size").Value.ToString(), out long size);
                         string md5 = launcher.Attribute("md5").Value;
 
-                        Fingerprint remoteLauncher = new Fingerprint(Settings.GamePath, "CreamSoda.exe", md5, size);
+                        Fingerprint remoteLauncher = new Fingerprint(Settings.GamePath, "CoHLauncher.exe", md5, size);
 
                         if (!myFingerprint.Equals(remoteLauncher))
                         {
@@ -602,7 +605,7 @@ namespace CreamSoda
                                     Arguments = MyToolkit.AllArgs()
                                 };
 
-                                MyToolkit.ActivityLog("CreamSoda has been patched successfuly. Restarting.");
+                                MyToolkit.ActivityLog("CoHLauncher has been patched successfuly. Restarting.");
 
                                 Process.Start(startInfo);
 
